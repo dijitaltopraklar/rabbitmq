@@ -1,0 +1,21 @@
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata:
+  name: production
+  namespace: rabbitmq-system
+spec:
+  replicas: 3
+  image: rabbitmq:3.13-management
+  resources:
+    requests:
+      cpu: 200m
+      memory: 800Mi
+    limits:
+      cpu: 200m
+      memory: 800Mi
+  persistence:
+    storageClassName: default
+    storage: "20Gi"
+  secretBackend:
+    externalSecret:
+      name: "admin"
